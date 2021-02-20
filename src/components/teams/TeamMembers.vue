@@ -9,6 +9,8 @@
         :role="member.role"
       ></user-item>
     </ul>
+    <!-- NOTE: this will change the url but not rerender the correct component -->
+    <router-link to="/teams/t2">Go to team 2</router-link>
   </section>
 </template>
 
@@ -19,15 +21,41 @@ export default {
   components: {
     UserItem
   },
+  // getting data from App.vue
+  inject: ['teams', 'users'],
+  props: ['teamId'],
   data() {
     return {
-      teamName: 'Test',
-      members: [
-        { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-        { id: 'u2', fullName: 'Max Schwarz', role: 'Engineer' },
-      ],
+      teamName: '',
+      members: []
     };
   },
+  methods: {
+    loadTeamMembers(teamId) {
+      // get access to the data but also the routing data: $route.params
+      // teamId comes from main.js route params eg /:teamId
+      // find the correct team with that id
+      const selectedTeam = this.teams.find((team) => team.id === teamId)
+      const members = selectedTeam.members
+      const selectedMembers = [];
+      for (const member of members) {
+        const selectedUser = this.users.find((user) => user.id === member)
+        selectedMembers.push(selectedUser)
+      }
+      this.members = selectedMembers
+      this.teamName = selectedTeam.name
+    }
+  },
+  // when the component is create but before its shown on the screen
+  created() {
+    this.loadTeamMembers(this.teamId);
+  },
+  // watching for everytime the route changes 
+  watch: {
+    teamId(newRoute) {
+      this.loadTeamMembers(newRoute);
+    }
+  }
 };
 </script>
 
