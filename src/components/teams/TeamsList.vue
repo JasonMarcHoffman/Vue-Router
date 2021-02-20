@@ -5,6 +5,7 @@
       :key="team.id"
       :name="team.name"
       :member-count="team.members.length"
+      :id="team.id"
     ></teams-item>
   </ul>
 </template>
@@ -16,6 +17,7 @@ export default {
   components: {
     TeamsItem,
   },
+  // coming from App.vue, used to do the for loop above
   inject: ['teams'],
 };
 </script>

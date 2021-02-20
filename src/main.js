@@ -5,6 +5,7 @@ import App from './App.vue';
 
 import TeamsList from './components/teams/TeamsList.vue'
 import UsersList from './components/users/UsersList.vue'
+import TeamMembers from './components/teams/TeamMembers.vue'
 
 const router = createRouter({
   // register all the routes for the app
@@ -14,6 +15,8 @@ const router = createRouter({
     // each js object is responsible for a path and its configuration
     { path: '/teams', component: TeamsList },
     { path: '/users', component: UsersList },
+    // adding a dynamic id, route parameter (:teamId) ie teams/t1
+    { path: '/teams/:teamId', component: TeamMembers, props: true },
   ],
   // allows you to override the router-link-active class
   linkActiveClass: 'active',

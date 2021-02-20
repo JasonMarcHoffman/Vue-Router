@@ -15,6 +15,7 @@ export default {
   },
   data() {
     return {
+      // dummy data for teams and their users, teams has a memeber key connected to the users
       teams: [
         { id: 't1', name: 'Frontend Engineers', members: ['u1', 'u2'] },
         { id: 't2', name: 'Backend Engineers', members: ['u1', 'u2', 'u3'] },
