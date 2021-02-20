@@ -12,6 +12,8 @@ const router = createRouter({
   // which vue component should be registered for which url
   // when registering routes there is no need to create local / global components
   routes: [
+    // setting the homepage to teamsList by redirecting it 
+    { path: '/', redirect: '/teams' },
     // each js object is responsible for a path and its configuration
     { path: '/teams', component: TeamsList },
     { path: '/users', component: UsersList },
