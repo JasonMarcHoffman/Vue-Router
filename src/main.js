@@ -6,6 +6,7 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue'
 import UsersList from './components/users/UsersList.vue'
 import TeamMembers from './components/teams/TeamMembers.vue'
+import NotFound from './components/nav/NotFound.vue'
 
 const router = createRouter({
   // register all the routes for the app
@@ -19,6 +20,9 @@ const router = createRouter({
     { path: '/users', component: UsersList },
     // adding a dynamic id, route parameter (:teamId) ie teams/t1
     { path: '/teams/:teamId', component: TeamMembers, props: true },
+    // if a user types in an incorrect url path lead them to this component
+    // nb must be last in the order
+    { path: '/:notFound(.*)', component: NotFound }
   ],
   // allows you to override the router-link-active class
   linkActiveClass: 'active',
