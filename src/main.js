@@ -7,6 +7,8 @@ import TeamsList from './components/teams/TeamsList.vue'
 import UsersList from './components/users/UsersList.vue'
 import TeamMembers from './components/teams/TeamMembers.vue'
 import NotFound from './components/nav/NotFound.vue'
+import TeamsFooter from './components/teams/TeamsFooter.vue'
+import UsersFooter from './components/users/UsersFooter.vue'
 
 const router = createRouter({
   // register all the routes for the app
@@ -19,19 +21,33 @@ const router = createRouter({
     // each js object is responsible for a path and its configuration
     // using NESTED ROUTES, children takes an array []
     {
+      // providing a name to routes
+      name: 'teams',
       path: '/teams',
-      component: TeamsList,
+      // component: TeamsList,
+      components: {
+        default: TeamsList,
+        footer: TeamsFooter
+      },
       children: [
         // when its nested you can remove the /teams
         // this url will look something like: /teams/t1
-        { path: ':teamId', component: TeamMembers, props: true }
+        { name: 'team-members', path: ':teamId', component: TeamMembers, props: true }
       ]
     },
 
     // another option using alias to set the current path and component to the root / home page
     // { path: '/teams', component: TeamsList, alias: '/' },
 
-    { path: '/users', component: UsersList },
+    {
+      name: 'users',
+      path: '/users',
+      // component: UsersList,
+      components: {
+        default: UsersList,
+        footer: UsersFooter
+      }
+    },
 
     // adding a dynamic id, route parameter (:teamId) ie teams/t1
     // { path: '/teams/:teamId', component: TeamMembers, props: true },

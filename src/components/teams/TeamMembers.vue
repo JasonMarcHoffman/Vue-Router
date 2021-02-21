@@ -49,6 +49,8 @@ export default {
   // when the component is create but before its shown on the screen
   created() {
     this.loadTeamMembers(this.teamId);
+    // get access to query parameters from teamsList
+    console.log(this.$route.query)
   },
   // watching for everytime the route changes 
   watch: {

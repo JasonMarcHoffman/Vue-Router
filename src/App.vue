@@ -4,6 +4,10 @@
     <!-- provides a place for where the components in main.js can be rendered -->
     <router-view></router-view>
   </main>
+  <footer>
+    <!-- ref the main js folder for name components -->
+    <router-view name="footer"></router-view>
+  </footer>
 </template>
 
 <script>
