@@ -61,6 +61,15 @@ const router = createRouter({
   linkActiveClass: 'active',
   // how to manage the routing history for the app
   // ie if the user clicks back
+
+  // scroll behavior method: received 3 arguments to, from, savedPosition
+  scrollBehavior(to, from, savedPosition) {
+    console.log(to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { left: 0, top: 0 }
+  },
   history: createWebHistory(),
 });
 
