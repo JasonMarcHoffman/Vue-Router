@@ -46,6 +46,11 @@ const router = createRouter({
       components: {
         default: UsersList,
         footer: UsersFooter
+      },
+      beforeEnter(to, from, next) {
+        console.log('users Before Enter');
+        console.log(to, from);
+        next();
       }
     },
 
@@ -72,6 +77,19 @@ const router = createRouter({
   },
   history: createWebHistory(),
 });
+
+// before navigation to a new route this function will be called
+// before each takes in a function
+// next allows us  to confirm or cancel the next action
+// used with AUTHENTICATION
+router.beforeEach(
+  function (to, from, next) {
+    console.log('Global Before Each Explanation:');
+    console.log(to, from);
+    // can pass false here and user will not have access
+    next();
+  }
+)
 
 const app = createApp(App)
 
