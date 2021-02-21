@@ -17,11 +17,16 @@ const router = createRouter({
     { path: '/', redirect: '/teams' },
     // each js object is responsible for a path and its configuration
     { path: '/teams', component: TeamsList },
+
+    // another option using alias to set the current path and component to the root / home page
+    // { path: '/teams', component: TeamsList, alias: '/' },
+
     { path: '/users', component: UsersList },
     // adding a dynamic id, route parameter (:teamId) ie teams/t1
     { path: '/teams/:teamId', component: TeamMembers, props: true },
     // if a user types in an incorrect url path lead them to this component
     // nb must be last in the order
+    // .* regular expression that means any character expression should be handled
     { path: '/:notFound(.*)', component: NotFound }
   ],
   // allows you to override the router-link-active class
