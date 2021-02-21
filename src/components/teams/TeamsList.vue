@@ -1,4 +1,6 @@
 <template>
+  <!-- this router view is responsible for rendering the child component in the main.js nested route -->
+  <router-view></router-view>
   <ul>
     <teams-item
       v-for="team in teams"

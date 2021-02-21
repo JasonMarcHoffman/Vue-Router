@@ -17,6 +17,13 @@ export default {
       // do something but then navigate to another page / url
       this.$router.push('/teams')
       // other examples: .forward(), .backward() etc ref official docs
+    },
+    // available because we are using vue router
+    beforeRouteEnter(to, from, next) {
+      console.log('Users List component before route enter')
+      console.log(to, from);
+      // run any logic here to confirm or deny the next method
+      next();
     }
   },
   inject: ['users'],

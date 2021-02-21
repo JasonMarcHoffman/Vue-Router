@@ -12,7 +12,14 @@ export default {
   props: ['id','name', 'memberCount'],
   computed: {
     teamMemberLink() {
-      return '/teams/' + this.id
+      // return '/teams/' + this.id
+      // vue router allows named routes: allows you to change the url in one place
+      return {
+        name: 'team-members',
+        params: { teamId: this.id },
+        // using additional info ie query paramaters
+        query: { sort: 'asc' }
+      }
     }
   }
 };
